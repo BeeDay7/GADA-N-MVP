@@ -1,0 +1,18 @@
+# Adaptive-attacker study (C6a-C6c) — the awareness ladder A1->A3 x {GPT-4o, Llama}.
+# Fills tab:adaptive. REAL backends; 40 seeds x 100 episodes. FREEZE PREREG.md
+# (incl. the A2/A3 HCR thresholds [X],[Y]) BEFORE running.
+name: adaptive_study
+out: results/adaptive_study
+defaults:
+  defence: gadanplus
+  variant: 0
+  seeds: 40
+  episodes: 100
+  max_steps: 60
+conditions:
+  - {condition: C6a, attacker: gpt4o, awareness: A1}
+  - {condition: C6b, attacker: gpt4o, awareness: A2}
+  - {condition: C6c, attacker: gpt4o, awareness: A3}
+  - {condition: C6a, attacker: llama, awareness: A1}
+  - {condition: C6b, attacker: llama, awareness: A2}
+  - {condition: C6c, attacker: llama, awareness: A3}

@@ -1,0 +1,16 @@
+# Prompt-robustness suite — the pre-registered default awareness level run under
+# all THREE prompt paraphrases (variant 0/1/2) to report the sensitivity spread.
+# Set the awareness to your pre-registered default before running.
+name: robustness
+out: results/robustness
+defaults:
+  defence: gadanplus
+  attacker: gpt4o
+  awareness: A2          # pre-registered default awareness for the spread report
+  seeds: 40
+  episodes: 100
+  max_steps: 60
+conditions:
+  - {condition: R_v0, variant: 0}   # pre-registered default paraphrase
+  - {condition: R_v1, variant: 1}
+  - {condition: R_v2, variant: 2}

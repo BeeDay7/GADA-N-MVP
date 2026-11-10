@@ -1,0 +1,16 @@
+# Single-condition config template (for `python -m gadanplus.run --config ...`).
+# CLI flags override any field here. For multi-condition runs use the suite_*.yaml
+# files with `python -m gadanplus.run_conditions --suite configs/suite_*.yaml`.
+condition: C1
+defence: gadanplus        # none | naive | gadanplus  (ppo/gan_ids/honeypot = TODO real baselines)
+attacker: gpt4o           # mock | gpt4o | llama
+awareness: A0             # A0 | A1 | A2 | A3
+variant: 0                # prompt paraphrase index: 0 = pre-registered default, 0..2
+seeds: 40
+episodes: 100
+max_steps: 60
+out: results/C1
+# Condition legend:
+#  C1: GADA-N+ vs GPT-4o (A0)      C2: GADA-N+ vs Llama (A0)
+#  C3: naive vs GPT-4o (ablation)  C4: GADA-N(PPO) vs GPT-4o  [TODO real baseline]
+#  C5: none vs GPT-4o              C6a/b/c: GADA-N+ vs {GPT-4o,Llama} at A1/A2/A3

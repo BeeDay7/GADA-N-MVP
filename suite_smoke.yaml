@@ -1,0 +1,18 @@
+# Smoke suite — pipeline validation with the MOCK backend (no API/GPU).
+# Output is NOT PAPER DATA. Use this to verify the full run->metrics->figures
+# pipeline end-to-end before launching real backends.
+name: smoke
+out: results/smoke_suite
+defaults:
+  attacker: mock
+  variant: 0
+  seeds: 4
+  episodes: 40
+  max_steps: 60
+conditions:
+  - {condition: C5,  defence: none,      awareness: A0}   # undefended reference
+  - {condition: C3,  defence: naive,     awareness: A0}   # naive-deception ablation
+  - {condition: C1,  defence: gadanplus, awareness: A0}   # GADA-N+ main
+  - {condition: C6a, defence: gadanplus, awareness: A1}   # awareness ladder A1
+  - {condition: C6b, defence: gadanplus, awareness: A2}   # awareness ladder A2
+  - {condition: C6c, defence: gadanplus, awareness: A3}   # awareness ladder A3

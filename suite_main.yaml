@@ -1,0 +1,21 @@
+# Main study (C1..C5) — REAL backends. Requires the real GADA-N env + endpoints
+# (OPENAI_API_KEY for gpt4o; LLAMA_ENDPOINT for llama). 40 seeds x 100 episodes.
+# Reproduces Tables 2-3. FREEZE PREREG.md before running.
+#
+# NOTE ON MISSING BASELINES: the reference stand-in implements defence in
+# {none, naive, gadanplus} only. The manuscript's C4 (GADA-N PPO ablation) and
+# the gan_ids / honeypot baselines are NOT implemented here — wire in the real
+# baseline controllers before running them, then add their conditions below.
+name: main_study
+out: results/main_study
+defaults:
+  variant: 0
+  seeds: 40
+  episodes: 100
+  max_steps: 60
+conditions:
+  - {condition: C1, defence: gadanplus, attacker: gpt4o, awareness: A0}  # GADA-N+ vs GPT-4o
+  - {condition: C2, defence: gadanplus, attacker: llama, awareness: A0}  # GADA-N+ vs Llama
+  - {condition: C3, defence: naive,     attacker: gpt4o, awareness: A0}  # naive ablation
+  - {condition: C5, defence: none,      attacker: gpt4o, awareness: A0}  # undefended
+  # - {condition: C4, defence: ppo,     attacker: gpt4o, awareness: A0}  # TODO real PPO baseline
